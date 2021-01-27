@@ -5,12 +5,13 @@
 
 raspi ssh mit port
 
-Host:	vpn.htl-wels.a
+Host:	vpn.htl-wels.at / remsvc.freeddns.org
 Port:	8025
 
 ssh -l pi -p8025 vpn.htl-wels.at
+ssh -l pi -p242 remsvc.freeddns.org
 
-user:	raspi-it-08
+user:		raspi-it-08
 pw:		psphFrPi08
 
 
@@ -18,11 +19,12 @@ pw:		psphFrPi08
 -----------------Git------------------------
 ############################################
 
-cd ~/Dev/ObstStixWintersteiger	//Git folder
+cd ~/devel/ObstStixWintersteiger	//Git folder
 
+git clone https://github.com/StixLukas/ObstStixWintersteiger.git
 git status							
 git add *					//add to git
-git commit -m "Text"		//commit to git
+git commit -m "Text"				//commit to git
 git push					//push to git
 git pull					//pull from git
 

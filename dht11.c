@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define MAX_TIMINGS	85
-#define DHT_PIN		11	/* GPIO-22 */
+#define DHT_PIN		11	/* GPIO-0 */
 
 int data[5] = { 0, 0, 0, 0, 0 };
 
@@ -96,10 +96,3 @@ int main( void )
 
 	return(0);
 }
- 
-//int main( void )
-//{
-	//printf("DHT11 Temperature: %.2f °C\n", read_ds18b20(););
-    
-    //return(0);
-//}

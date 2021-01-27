@@ -7,7 +7,11 @@ clock_t start, end;
 double result;
 
 int main(){
-  while(1){
+  read();
+}
+
+int read(){
+while(1){
   pinMode(15,OUTPUT);
 
   start=clock();

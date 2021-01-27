@@ -1,6 +1,6 @@
 #include <wiringPiI2C.h>
 #include <stdio.h>
-int main(void){
+int luxmeter(){
 	int handle = wiringPiI2CSetup(0x5C);
 	wiringPiI2CWrite(handle,0x01);
 	wiringPiI2CWrite(handle,0x21);

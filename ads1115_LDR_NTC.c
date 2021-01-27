@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-int main(){
+int ads1115(){
 	FILE* dataFromLDR = popen("gpio -x ads1115:120:0x49 aread 121","r");
 	int iLDR = 0;
 	fscanf(dataFromLDR, "%d",  &iLDR);

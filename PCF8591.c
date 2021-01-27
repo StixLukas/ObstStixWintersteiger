@@ -6,7 +6,7 @@
 #define PCF 120
 
 
-int main(void){
+int pcf8591(){
 	int valueLDR;
 	int valueNTC;
 	wiringPiSetup();
@@ -22,8 +22,4 @@ int main(void){
 
 
 	return 0;
-
-
-
-
 }

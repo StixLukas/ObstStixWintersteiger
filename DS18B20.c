@@ -1,42 +1,40 @@
-#include <OneWire.h>
-#include <DallasTemperature.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#define ONE_WIRE_BUS 2
+#define BASE_FILE "/sys/bus/w1/devices/28-01144fe3b8aa/w1_slave"
 
-OneWire oneWire(ONE_WIRE_BUS);	
-DallasTemperature sensors(&oneWire);
-
-void read_ds18b20()
+int read_ds18b20()
 {
-  // Send the command to get temperatures
-  sensors.requestTemperatures(); 
+  FILE *fp;
+  char con[1000];
+  char *pch;
+  float temp=0;
+  
+  fp = fopen(BASE_FILE, "r");
+  if(!fp)
+  	return 1;
 
-  //print the temperature in Celsius
-  Serial.print("Temperature: ");
-  Serial.print(sensors.getTempCByIndex(0));
-  Serial.print((char)176);//shows degrees character
-  Serial.print("C  |  ");
-  
-  //print the temperature in Fahrenheit
-  Serial.print((sensors.getTempCByIndex(0) * 9.0) / 5.0 + 32.0);
-  Serial.print((char)176);//shows degrees character
-  Serial.println("F");
-  
-  delay(500);
+  while(fgets(con, 1000, fp)!=NULL){
+  		
+  		pch=strstr(con,"t=");
+  		if(pch!=NULL){
+
+			pch+=2;
+  			temp = (float) strtod(pch,NULL);
+  			temp /= 1000;
+
+  			printf("DS18B20 Temperature: %.2f °C\n", temp);
+  		}
+  }
+
+  fclose(fp);
+  return 0;
+
 }
  
 int main( void )
 {
-    printf( "Raspberry Pi wiringPi DS18B20 Temperature\n" );
- 
-    if ( wiringPiSetup() == -1 )
-        exit( 1 );
- 
-    while ( 1 )
-    {
-        read_ds18b20();
-        delay( 1000 ); 
-    }
- 
+    read_ds18b20();
     return(0);
 }

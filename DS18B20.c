@@ -17,11 +17,13 @@ int read_ds18b20()
 
   while(fgets(con, 1000, fp)!=NULL){
   		
+		//searches for temperature in document
   		pch=strstr(con,"t=");
   		if(pch!=NULL){
 
 			pch+=2;
   			temp = (float) strtod(pch,NULL);
+			//divide by 1000 because temperature is multiplied by this number
   			temp /= 1000;
 
   			printf("DS18B20 Temperature: %.2f °C\n", temp);

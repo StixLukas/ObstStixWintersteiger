@@ -9,7 +9,12 @@
 #include <pcf8591.h>
 
 #define PCF 120
-int[] pcf8591();
+int pcf8591(pcf8591_t);
 
+
+typedef struct pcf8591{
+    int ldr;
+    int ntc;
+} pcf8591_t;
 
 #endif

@@ -1,3 +1,9 @@
+#include <stdio.h>
+
+#include <pigpio.h>
+
+#define STEP_DELAY 2000
+
 /*
 2000  7 RPM
 1500  9 RPM
@@ -5,10 +11,10 @@
  900 15 RPM
 */
 
-#define Pin1 14
-#define Pin2 15
-#define Pin3 17
-#define Pin4 18
+#define Pin1 16
+#define Pin2 18
+#define Pin3 32
+#define Pin4 33
 
 int step = 0; 
 

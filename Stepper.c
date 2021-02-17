@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 {
   int i,x=0,dx;
  
-  wiringPiSetupGpio();
+  wiringPiSetupPhys();
   dx = atoi(argv[1]);
   if (argc==3) {
     D = atoi(argv[2]);
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
   for(i=0; i<4; ++i)
     {
-      pinMode(m[i], PWM_OUTPUT);
+      
       digitalWrite(m[i], LOW);
     }
 

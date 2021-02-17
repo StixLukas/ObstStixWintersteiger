@@ -11,10 +11,10 @@
  900 15 RPM
 */
 
-#define Pin1 16
-#define Pin2 18
-#define Pin3 32
-#define Pin4 33
+#define Pin1 38
+#define Pin2 35
+#define Pin3 36
+#define Pin4 40
 
 int step = 0; 
 

@@ -2,14 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include "dht11.h"
 
 #define MAX_TIMINGS	85
 #define DHT_PIN		11	/* GPIO-0 */
 
 int data[5] = { 0, 0, 0, 0, 0 };
 
-void read_dht_data(dht11_t *val)
+void read_dht_data()
 {
 	uint8_t laststate	= HIGH;
 	uint8_t counter		= 0;
@@ -75,12 +74,10 @@ void read_dht_data(dht11_t *val)
 		{
 			c = -c;
 		}
-
-		val->c = c;
-		val->h = h;
-		val->f = f;
+		float f = c * 1.8f + 32;
+		printf( "Humidity = %.1f %% Temperature = %.1f *C (%.1f *F)\n", h, c, f );
 	}else  {
-		
+		printf( "Data not good, skip\n" );
 	}
 }
 

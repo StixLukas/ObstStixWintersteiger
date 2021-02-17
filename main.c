@@ -4,9 +4,15 @@
 #include "ads1115.h"
 #include "luxmeter.h"
 #include "pcf8591.h"
+#include "ObstGyro.h"
+#include "ObstHCSR.h"
+#include "bme280.h"
 
 int main( void )
 {
+	mpu6050_t mpu;
+	bme280_t bme;
+	bme280_t bme;
 	dht11_t dht11_val;
 	ads1115_t ads1115_val;
 	int luxmeter_val;
@@ -22,6 +28,16 @@ int main( void )
 
 	printf( "Temperature = %.2f *C\n", ds18b20);
 
+	readGyro(mpu6050_t &mpu);
+	printf("X rotation: %f\n", mpu->x);
+	printf("Y rotation: %f\n", mpu->y);
+	
+	printf("Distance: %f ",readHCSR());
+
+	readBME280(bme280_t &bme);
+	printf("{\"sensor\":\"bme280\", \"humidity\":%.2f, \"pressure\":%.2f,"
+    	" \"temperature\":%.2f, \"altitude\":%.2f}\n",
+    	bme->humidity, bme->pressure, bme->temperature, bme->altitude);
 
 	return(0);
 }

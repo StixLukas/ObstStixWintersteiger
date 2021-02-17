@@ -1,3 +1,10 @@
+#include <stdio.h>
+#include <errno.h>
+#include <stdint.h>
+#include <time.h>
+#include <math.h>
+#include <wiringPiI2C.h>
+
 #ifndef __BME280_H__
 #define __BME280_H__
 
@@ -83,3 +90,12 @@ typedef struct
   uint32_t humidity;  
 
 } bme280_raw_data;
+
+typedef struct bme280{
+	double humidity;
+	double pressure;
+	double temperature;
+	double altitude;
+}bme280_t;
+
+void readBME280(bme280_t);

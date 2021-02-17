@@ -1,8 +1,5 @@
-#include <wiringPiI2C.h>
-#include <wiringPi.h>
-#include <stdio.h>
-#include <math.h>
- 
+#include "ObstGyro.h"
+
 int fd;
 int acclX, acclY, acclZ;
 int gyroX, gyroY, gyroZ;
@@ -39,12 +36,10 @@ radians = atan2(y, dist(x, z));
 return (radians * (180.0 / M_PI));
 }
  
-int main()
+void readGyro(mpu6050_t *mpu)
 {
 fd = wiringPiI2CSetup (0x69);
 wiringPiI2CWriteReg8 (fd,0x6B,0x00);//disable sleep mode
- 
-while(1) {
  
 acclX = read_word_2c(0x3B);
 acclY = read_word_2c(0x3D);
@@ -53,12 +48,8 @@ acclZ = read_word_2c(0x3F);
 acclX_scaled = acclX / 16384.0;
 acclY_scaled = acclY / 16384.0;
 acclZ_scaled = acclZ / 16384.0;
- 
-printf("X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
-printf("Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
- 
- 
-delay(100);
-}
-return 0;
+
+mpu->x=get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled);
+mpu->y=get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled);
+
 }

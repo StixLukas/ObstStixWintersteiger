@@ -1,17 +1,10 @@
-#include <wiringPi.h>
-#include <time.h>
-#include <stdio.h>
+#include "ObstHCSR.h"
 
 double timedelay;
 clock_t start, end;
 double result;
 
-int main(){
-  read();
-}
-
-int read(){
-while(1){
+double readHCSR(){
   pinMode(15,OUTPUT);
 
   start=clock();
@@ -23,6 +16,5 @@ while(1){
 
   result=17150*timedelay;
 
-  printf("Distance: %f ",result);
-}
+  return result;
 }

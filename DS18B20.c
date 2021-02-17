@@ -4,7 +4,7 @@
 
 #define BASE_FILE "/sys/bus/w1/devices/28-01144fe3b8aa/w1_slave"
 
-int read_ds18b20()
+float read_ds18b20()
 {
   FILE *fp;
   char con[1000];
@@ -25,13 +25,12 @@ int read_ds18b20()
   			temp = (float) strtod(pch,NULL);
 			//divide by 1000 because temperature is multiplied by this number
   			temp /= 1000;
-
-  			printf("DS18B20 Temperature: %.2f °C\n", temp);
+        return temp;
   		}
   }
 
   fclose(fp);
-  return 0;
+  return NULL;
 
 }
  

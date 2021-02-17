@@ -8,13 +8,14 @@
 
 int data[5] = { 0, 0, 0, 0, 0 };
 
-void read_dht_data()
+float[] read_dht_data()
 {
 	uint8_t laststate	= HIGH;
 	uint8_t counter		= 0;
 	uint8_t j			= 0, i;
 
 	data[0] = data[1] = data[2] = data[3] = data[4] = 0;
+	float read[2];
 
 	/* pull pin down for 18 milliseconds */
 	pinMode( DHT_PIN, OUTPUT );
@@ -74,10 +75,12 @@ void read_dht_data()
 		{
 			c = -c;
 		}
-		float f = c * 1.8f + 32;
-		printf( "Humidity = %.1f %% Temperature = %.1f *C (%.1f *F)\n", h, c, f );
+		read[0] = h;
+		read[1] = c;
+		//printf( "Humidity = %.1f %% Temperature = %.1f *C (%.1f *F)\n", h, c, f );
+		return h,c;
 	}else  {
-		printf( "Data not good, skip\n" );
+		return null;
 	}
 }
 

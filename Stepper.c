@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <assert.h>
+#include <stdio.h> include <stdlib.h> include <unistd.h> include <assert.h>
 
 #include <wiringPi.h>
 
@@ -24,7 +21,7 @@ void hstep(unsigned v)
 
 void hstep2(int x)
 {
-  hstep(x) usleep(D);
+  hstep(x); usleep(D);
 }
 
 int main(int argc, char *argv[])
@@ -40,7 +37,7 @@ int main(int argc, char *argv[])
 
   for(i=0; i<4; ++i)
     {
-      pinMode(m[i], PI_OUTPUT);
+      pinMode(m[i], PWM_OUTPUT);
       digitalWrite(m[i], LOW);
     }
 

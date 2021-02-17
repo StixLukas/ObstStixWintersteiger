@@ -1,6 +1,5 @@
-#include <stdlib.h>
-#include <stdio.h>
-int ads1115(){
+#include "ads1115.h"
+int[] ads1115(){
 	FILE* dataFromLDR = popen("gpio -x ads1115:120:0x49 aread 121","r");
 	int iLDR = 0;
 	fscanf(dataFromLDR, "%d",  &iLDR);
@@ -12,5 +11,5 @@ int ads1115(){
 	float fNTCTemperatur = (float)iNTC/1000;
 	printf("Temperatur: %.2f\n",fNTCTemperatur);
 
-	return 0;
+	return int[iLDR,iNTC];
 }

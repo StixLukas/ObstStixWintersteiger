@@ -1,0 +1,15 @@
+
+
+#ifndef PCF8591_H
+#define PCF8591_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <wiringPi.h>
+#include <pcf8591.h>
+
+#define PCF 120
+int[] pcf8591();
+
+
+#endif

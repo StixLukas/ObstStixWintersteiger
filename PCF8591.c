@@ -1,12 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <wiringPi.h>
-#include <pcf8591.h>
 
-#define PCF 120
+#include "pcf8591.h"
 
-
-int pcf8591(){
+int[] pcf8591(){
 	int valueLDR;
 	int valueNTC;
 	wiringPiSetup();
@@ -21,5 +16,5 @@ int pcf8591(){
 	analogWrite(PCF+2,valueNTC);
 
 
-	return 0;
+	return int[valueLDR,valueNTC];
 }

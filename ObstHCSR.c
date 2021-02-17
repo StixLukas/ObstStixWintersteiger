@@ -5,6 +5,7 @@ clock_t start, end;
 double result;
 
 double readHCSR(){
+  wiringPiSetupPhys();
   pinMode(15,OUTPUT);
 
   start=clock();

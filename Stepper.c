@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <assert.h>
 
-#include <pigpio.h>
+#include <wiringPi.h>
 
 int D=1000;
 
@@ -20,7 +20,7 @@ int N=sizeof(m[0])/sizeof(m[0][0]);
 void gpiosWrite(unsigned *p, unsigned v)
 {
   for(int i=0; i<N; ++i)
-    gpioWrite( p[i], (v&(1<<i)) ? 1 : 0 );
+    digitalWrite( p[i], (v&(1<<i)) ? HIGH : LOW );
 }
 
 void hstep(int mn, unsigned v)
@@ -39,8 +39,7 @@ int main(int argc, char *argv[])
 
   assert(((argc+1)/2==2) || !"Format: sudo ./move dx dy [D]");
  
-  assert(gpioInitialise()>=0);
-
+  wiringPiSetupGpio();
   dx = atoi(argv[1]);
   dy = atoi(argv[2]);
   if (argc==4) {
@@ -51,8 +50,8 @@ int main(int argc, char *argv[])
   for(i=0; i<M; ++i)
     for(j=0; j<N; ++j)
     {
-      gpioSetMode(m[i][j], PI_OUTPUT);
-      gpioWrite(m[i][j], 0);
+      pinMode(m[i][j], PI_OUTPUT);
+      digitalWrite(m[i][j], LOW);
     }
 
   hstep2(x,y);
@@ -61,6 +60,4 @@ int main(int argc, char *argv[])
   for(i=0; i>dx; --i) hstep2(--x,y);
   for(i=0; i<dy; ++i) hstep2(x,++y);
   for(i=0; i>dy; --i) hstep2(x,--y);
-     
-  gpioTerminate();
 }

@@ -6,6 +6,12 @@
 #include <stdlib.h>
 #include <stdint.h>
 	
-	float[] read_dht_data();
+	typedef struct dht11{
+		float h;
+		float c;
+		float f;
+	}dht11_t;
+
+	void read_dht_data(dht11_t);
 
 #endif

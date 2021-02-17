@@ -2,20 +2,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include "dht11.h"
 
 #define MAX_TIMINGS	85
 #define DHT_PIN		11	/* GPIO-0 */
 
 int data[5] = { 0, 0, 0, 0, 0 };
 
-float[] read_dht_data()
+void read_dht_data(dht11_t *val)
 {
 	uint8_t laststate	= HIGH;
 	uint8_t counter		= 0;
 	uint8_t j			= 0, i;
 
 	data[0] = data[1] = data[2] = data[3] = data[4] = 0;
-	float read[2];
 
 	/* pull pin down for 18 milliseconds */
 	pinMode( DHT_PIN, OUTPUT );
@@ -75,12 +75,12 @@ float[] read_dht_data()
 		{
 			c = -c;
 		}
-		read[0] = h;
-		read[1] = c;
-		//printf( "Humidity = %.1f %% Temperature = %.1f *C (%.1f *F)\n", h, c, f );
-		return h,c;
+
+		val->c = c;
+		val->h = h;
+		val->f = f;
 	}else  {
-		return null;
+		
 	}
 }
 

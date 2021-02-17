@@ -4,10 +4,11 @@
 
 int main( void )
 {
-	float[2] dht = read_dht_data();;
+	dht11_t dht11_val; 
+	read_dht_data(&dht11_val);
 	float ds18b20 = read_ds18b20();
 
-	printf( "Humidity = %.1f %% Temperature = %.1f *C\n", dht[0], dht[1] );
+	printf( "Humidity = %.1f Temperature = %.1f C (%.1f F)\n", dht11_val->h, dht11_val->c, dht11_val->f);
 
 	printf( "Temperature = %.2f *C\n", ds18b20);
 

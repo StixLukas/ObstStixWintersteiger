@@ -1,108 +1,3 @@
-/*#include <stdio.h>
-#include <pigpio.h>
-#define STEP_DELAY 2000
-/*
-2000  7 RPM
-1500  9 RPM
-1000 13 RPM
- 900 15 RPM
-*/
-
-#define Pin1 32
-#define Pin2 33
-#define Pin3 16
-#define Pin4 18
-
-int step = 0; 
-
-void loop() 
-{ 
-   switch(step)
-   { 
-   case 0: 
-     gpioWrite(Pin1, PI_LOW);  
-     gpioWrite(Pin2, PI_LOW); 
-     gpioWrite(Pin3, PI_LOW); 
-     gpioWrite(Pin4, PI_HIGH); 
-   break;  
-   case 1: 
-     gpioWrite(Pin1, PI_LOW);  
-     gpioWrite(Pin2, PI_LOW); 
-     gpioWrite(Pin3, PI_HIGH); 
-     gpioWrite(Pin4, PI_HIGH); 
-   break;  
-   case 2: 
-     gpioWrite(Pin1, PI_LOW);  
-     gpioWrite(Pin2, PI_LOW); 
-     gpioWrite(Pin3, PI_HIGH); 
-     gpioWrite(Pin4, PI_LOW); 
-   break;  
-   case 3: 
-     gpioWrite(Pin1, PI_LOW);  
-     gpioWrite(Pin2, PI_HIGH); 
-     gpioWrite(Pin3, PI_HIGH); 
-     gpioWrite(Pin4, PI_LOW); 
-   break;  
-   case 4: 
-     gpioWrite(Pin1, PI_LOW);  
-     gpioWrite(Pin2, PI_HIGH); 
-     gpioWrite(Pin3, PI_LOW); 
-     gpioWrite(Pin4, PI_LOW); 
-   break;  
-   case 5: 
-     gpioWrite(Pin1, PI_HIGH);  
-     gpioWrite(Pin2, PI_HIGH); 
-     gpioWrite(Pin3, PI_LOW); 
-     gpioWrite(Pin4, PI_LOW); 
-   break;  
-     case 6: 
-     gpioWrite(Pin1, PI_HIGH);  
-     gpioWrite(Pin2, PI_LOW); 
-     gpioWrite(Pin3, PI_LOW); 
-     gpioWrite(Pin4, PI_LOW); 
-   break;  
-   case 7: 
-     gpioWrite(Pin1, PI_HIGH);  
-     gpioWrite(Pin2, PI_LOW); 
-     gpioWrite(Pin3, PI_LOW); 
-     gpioWrite(Pin4, PI_HIGH); 
-   break;  
-   default: 
-     gpioWrite(Pin1, PI_LOW);  
-     gpioWrite(Pin2, PI_LOW); 
-     gpioWrite(Pin3, PI_LOW); 
-     gpioWrite(Pin4, PI_LOW); 
-   break;  
-   }
-} 
-
-int main(int argc, char * argv[])
-{
-   int i;
-   int step_delay = STEP_DELAY;
-
-   if (argc > 1) step_delay = atoi(argv[1]);
-
-   if ((step_delay < 800) || (step_delay>1000000)) step_delay = STEP_DELAY;
-
-   if (gpioInitialise()<0) return 1;
-
-   gpioSetMode(Pin1, PI_OUTPUT);  
-   gpioSetMode(Pin2, PI_OUTPUT);  
-   gpioSetMode(Pin3, PI_OUTPUT);  
-   gpioSetMode(Pin4, PI_OUTPUT);  
-
-   for (i=0; i<9000000; i++)
-   {
-      loop();
-      step++;
-      if (step>7) step = 0;
-      gpioDelay(step_delay);
-   }
-
-   gpioTerminate();
-}
-
  /*
  CodeNova
  stepper motor test, for BaconStorm
@@ -112,13 +7,13 @@ int main(int argc, char * argv[])
  sudo gpio readall
  g++ -Wall -o steptest steptest.cpp -lwiringPi
 */
-/*
+
 #include <stdio.h>
 #include <wiringPi.h>
 #define FORWARD   1
 #define BACKWARD  0
-const int SPEED = 500;
-const int PINS[4] = {22,23,24,25};
+const int SPEED = 1000;
+const int PINS[4] = {32,33,16,18};
 const bool STEPS[8][4] = {
   {HIGH, LOW, HIGH, LOW}, //0
   {HIGH, LOW, LOW, LOW},  //1
@@ -186,4 +81,4 @@ void debugPrint(void)
     printf("%d", digitalRead(PINS[i])); //read the new io state
   printf("\n");
 }
-*/
+

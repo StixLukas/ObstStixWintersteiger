@@ -14,14 +14,23 @@ int main (int argc, char **argv)
 	if(argc==6){
 		puts(argv[1]);
 		int powerpin= (int) argv[1];
+		printf("%d", powerpin);
+
 		puts(argv[2]);
 		int forward= (int) argv[2];
+		printf("%d", forward);
+
 		puts(argv[3]);
 		int backward= (int) argv[3];
+		printf("%d", backward);
+
 		puts(argv[4]);
 		int power= (int) argv[4];
+		printf("%d", power);
+		
 		puts(argv[5]);
 		int isforward= (int) argv[5];
+		printf("%d", isforward);
 
 		dcmotor(powerpin, forward, backward, power, isforward); // dcmotor(38, 40, 36, 300, 1);
 	}

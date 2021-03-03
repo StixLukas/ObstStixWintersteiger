@@ -32,7 +32,7 @@ int main(void)
   printf("CodeNova, Stepper Test\n");
   int index = 0;    //step index counter
   
-  wiringPiSetup();  //setup wireing pi
+  wiringPiSetupPhys();  //setup wireing pi
   initPins(index);  //init pins, start at 0
   //forward 10 halfsteps
   printf("* Forward Test *\n");
@@ -68,17 +68,18 @@ void initPins(const int index)
 }
 void halfStep(int &index, bool dir)
 {
-  index = dir ? ((index+1)%8) : ((index+7)%8);  //add|sub index based on direction
-  
+  printf("index before calc: %d",index);
+  index = dir ? ((index+1)%8) : ((index+7)%8);  //add|sub index based on direction 
+  printf("index(halfStep): %d",index);  
   for(int i = 0; i < 4; i++)
     digitalWrite(PINS[i], STEPS[index][i]);   //write to IO 
-  
+  	
   debugPrint();                 //print IO state, debug
 }
 void debugPrint(void)
 {
   for(int i = 0; i < 4; i++)
-    printf("%d", digitalRead(PINS[i])); //read the new io state
+    printf("\n%d", digitalRead(PINS[i])); //read the new io state
   printf("\n");
 }
 

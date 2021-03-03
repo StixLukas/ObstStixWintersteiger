@@ -10,10 +10,11 @@
 
 #include <stdio.h>
 #include <wiringPi.h>
+
 #define FORWARD   1
 #define BACKWARD  0
-const int SPEED = 1000;
-const int PINS[4] = {32,33,16,18};
+int SPEED = 1000;
+int PINS[4] = {32,33,16,18};
 const bool STEPS[8][4] = {
   {HIGH, LOW, HIGH, LOW}, //0
   {HIGH, LOW, LOW, LOW},  //1
@@ -24,9 +25,8 @@ const bool STEPS[8][4] = {
   {LOW, HIGH, HIGH, LOW}, //6
   {LOW, LOW, HIGH, LOW},  //7
   };
-void initPins(const int index);
-void halfStep(int &index, bool dir);
-void debugPrint(void);
+
+
 int main(void)
 {
   printf("CodeNova, Stepper Test\n");
@@ -55,6 +55,33 @@ int main(void)
   printf("Test FIN\n");
   return 0;
 }
+
+void stepper(int pin1, int pin2, int pin3, int pin4, int speed, int steps){
+  PINS = {pin1, pin2, pin3, pin4};
+  SPEED = speed;
+
+  int index = 0;
+  
+  wiringPiSetupPhys();
+  initPins(index); 
+
+  if(speed >0){
+    for(int i = 0; i < 10; i++)
+    { 
+      halfStep(index, FORWARD);
+      delay(SPEED);
+    }
+  }
+  else{
+    for(int i = 0; i < 10; i++)
+    {
+      halfStep(index, BACKWARD);
+      delay(SPEED);
+    } 
+  }
+  
+}
+
 void initPins(const int index)
 {
   for(int i = 0; i < 4; i++)
@@ -66,6 +93,8 @@ void initPins(const int index)
   debugPrint();                   //print IO state, debug
   printf("index: %d\n", index);           //print index number, debug
 }
+
+
 void halfStep(int &index, bool dir)
 {
   printf("index before calc: %d",index);
@@ -76,6 +105,8 @@ void halfStep(int &index, bool dir)
   	
   debugPrint();                 //print IO state, debug
 }
+
+
 void debugPrint(void)
 {
   for(int i = 0; i < 4; i++)

@@ -1,13 +1,6 @@
-#include <wiringPi.h>
-
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdint.h>
+#include "dcmotor.h"
 
 #define DELAY 100
-
-void dcmotor(int powerPin, int fwdPin, int bwdPin, int power, int isforward);
 
 int main (int argc, char **argv)
 { 

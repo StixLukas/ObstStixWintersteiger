@@ -65,19 +65,22 @@ void stepper(int pin1, int pin2, int pin3, int pin4, int speed, int steps){
   wiringPiSetupPhys();
   initPins(index); 
 
-  if(speed >0){
-    for(int i = 0; i < 10; i++)
-    { 
-      halfStep(index, FORWARD);
-      delay(SPEED);
+  for(int j=0; j<steps;j++){}
+    if(speed > 0){
+      for(int i = 0; i < 10; i++)
+      { 
+        halfStep(index, FORWARD);
+        delay(SPEED);
+      }
     }
-  }
-  else{
-    for(int i = 0; i < 10; i++)
-    {
-      halfStep(index, BACKWARD);
-      delay(SPEED);
-    } 
+    else{
+      SPEED = SPEED * (-1);
+      for(int i = 0; i < 10; i++)
+      {
+        halfStep(index, BACKWARD);
+        delay(SPEED);
+      } 
+    }
   }
   
 }

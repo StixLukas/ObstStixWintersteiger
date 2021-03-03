@@ -9,5 +9,5 @@ int main (int argc, char **argv)
 
 	moveServo(12,180);
 	
-	//stepper(pin1, 2, 3, 4, speed, steps);
+	stepper(32,33,16,18 , 500, 3);
 }

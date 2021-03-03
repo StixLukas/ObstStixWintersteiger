@@ -12,25 +12,11 @@ void dcmotor(int powerPin, int fwdPin, int bwdPin, int power, int isforward);
 int main (int argc, char **argv)
 { 
 	if(argc==6){
-		puts(argv[1]);
 		int powerpin= atoi(argv[1]);
-		printf("%d \n", powerpin);
-
-		puts(argv[2]);
 		int forward= atoi(argv[2]);
-		printf("%d  \n", forward);
-
-		puts(argv[3]);
 		int backward= atoi(argv[3]);
-		printf("%d  \n", backward);
-
-		puts(argv[4]);
 		int power= atoi(argv[4]);
-		printf("%d  \n", power);
-
-		puts(argv[5]);
 		int isforward= atoi(argv[5]);
-		printf("%d  \n", isforward);
 
 		dcmotor(powerpin, forward, backward, power, isforward); // dcmotor(38, 40, 36, 300, 1);
 	}

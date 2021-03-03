@@ -11,10 +11,10 @@
  900 15 RPM
 */
 
-#define Pin1 38
-#define Pin2 35
-#define Pin3 36
-#define Pin4 40
+#define Pin1 32
+#define Pin2 33
+#define Pin3 16
+#define Pin4 18
 
 int step = 0; 
 
@@ -104,7 +104,7 @@ int main(int argc, char * argv[])
    }
 
    gpioTerminate();
-}*/
+}
 
  /*
  CodeNova
@@ -115,7 +115,7 @@ int main(int argc, char * argv[])
  sudo gpio readall
  g++ -Wall -o steptest steptest.cpp -lwiringPi
 */
-
+/*
 #include <stdio.h>
 #include <wiringPi.h>
 
@@ -197,3 +197,4 @@ void debugPrint(void)
 		printf("%d", digitalRead(PINS[i])); //read the new io state
 	printf("\n");
 }
+*/

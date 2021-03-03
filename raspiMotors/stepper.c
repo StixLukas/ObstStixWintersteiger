@@ -8,8 +8,7 @@
  g++ -Wall -o steptest steptest.cpp -lwiringPi
 */
 
-#include <stdio.h>
-#include <wiringPi.h>
+#include "stepper.h"
 
 #define FORWARD   1
 #define BACKWARD  0

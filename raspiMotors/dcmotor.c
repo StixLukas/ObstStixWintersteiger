@@ -6,10 +6,15 @@
 
 #define DELAY 100
 
-int main (void)
+int main (int argc, char **argv)
 { 
-	dcmotor(38, 40, 36, 300, 1); // forward	
-	dcmotor(38, 40, 36, 500, 0); // backwards
+	int powerpin=argv[1];
+	int forward=argv[2];
+	int backward=argv[3];
+	int power=argv[4];
+	int isforward=argv[5];
+
+	dcmotor(powerpin, forward, backward, power, isforward); // dcmotor(38, 40, 36, 300, 1);
 }
 
 

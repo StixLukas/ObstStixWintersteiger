@@ -10,17 +10,17 @@ void dcmotor(int powerPin, int fwdPin, int bwdPin, int power, int isforward);
 
 int main (int argc, char **argv)
 { 
-	if(argc==5){}
-	int powerpin= (int) argv[1];
-	int forward= (int) argv[2];
-	int backward= (int) argv[3];
-	int power= (int) argv[4];
-	int isforward= (int) argv[5];
+	if(argc==5){
+		int powerpin= (int) argv[1];
+		int forward= (int) argv[2];
+		int backward= (int) argv[3];
+		int power= (int) argv[4];
+		int isforward= (int) argv[5];
 
-	dcmotor(powerpin, forward, backward, power, isforward); // dcmotor(38, 40, 36, 300, 1);
+		dcmotor(powerpin, forward, backward, power, isforward); // dcmotor(38, 40, 36, 300, 1);
 	}
 	else{
-	printf("Please enter 5 arguments");
+		printf("Please enter 5 arguments");
 	}
 }
 

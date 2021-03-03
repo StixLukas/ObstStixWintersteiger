@@ -10,7 +10,7 @@ void dcmotor(int powerPin, int fwdPin, int bwdPin, int power, int isforward);
 
 int main (int argc, char **argv)
 { 
-	if(argc==5){
+	if(argc==6){
 		int powerpin= (int) argv[1];
 		int forward= (int) argv[2];
 		int backward= (int) argv[3];
